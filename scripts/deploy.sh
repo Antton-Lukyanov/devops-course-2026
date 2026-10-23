@@ -40,7 +40,8 @@ fi
 
 rsync -avz --delete --chmod=D755,F644 -e "$RSYNC_SSH" "$LOCAL_DIR" "$REMOTE:${REMOTE_DIR}/"
 
-curl --fail --silent --show-error --output /dev/null --cacert "$CA_CERT" "$SITE_URL"
+curl --fail --silent --show-error --output /dev/null -k "$SITE_URL"
+
 
 printf 'Деплой выполнен, commit %s\n' "$(git -C "$ROOT" rev-parse --short HEAD)"
 
